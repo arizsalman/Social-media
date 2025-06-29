@@ -7,12 +7,15 @@ import Post from './components/Post'
 // import "../App.css";
 import "./App.css";  
 import Postlist from './components/Postlist'
+import PostListProvider from './store/PostlistStore'
 
 const App = () => {
   const [selectedTab,setSelectedTab]=useState("Home")
   return (
     <>
-    <div className='app-container' >
+    
+    <PostListProvider>
+     <div className='app-container' >
       <Header/>
       <div className='content'>
         <SideBar selectedTab={selectedTab} setSelectedTab={setSelectedTab}></SideBar>
@@ -24,7 +27,7 @@ const App = () => {
       
       <Fooder></Fooder>
       </div>
-
+      </PostListProvider>
     </>
   )
 }
