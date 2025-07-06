@@ -1,41 +1,95 @@
-import React from 'react'
+import React, { useRef } from 'react'
 
 const CreatePost = () => {
+
+  const userId = useRef();
+  const postTitle = useRef();
+  const postBody = useRef();
+  const reactions = useRef();
+  const tags = useRef();
+
+
   return (
     <>
-    <form>
+    <form className='create-post'>
+
+    <div className="mb-3 flex-grow-1 p-4">
+    <label htmlFor="userId" className="form-label">
+     Enter your User Id Here
+    </label>
+    <input
+      type="type"
+      className="form-control"
+      id="userId"
+      placeholder='Your user id'
+     ref={userId}
+    />
+   
+  </div>  
+
+
   <div className="mb-3 flex-grow-1 p-4">
-    <label htmlFor="exampleInputEmail1" className="form-label">
-      Email address
+    <label htmlFor="title" className="form-label">
+      Post Title 
     </label>
     <input
-      type="email"
+      type="type"
       className="form-control"
-      id="exampleInputEmail1"
-      aria-describedby="emailHelp"
+      id="title"
+      placeholder='How are you felling today ....'
+     ref={postTitle}
     />
-    <div id="emailHelp" className="form-text">
-      We'll never share your email with anyone else.
-    </div>
+   
   </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">
-      Password
+
+  <div className="mb-3 flex-grow-1 p-4">
+    <label htmlFor="title" className="form-label">
+      Post Content
     </label>
     <input
-      type="password"
+      type="type"
+      rows="4"
       className="form-control"
-      id="exampleInputPassword1"
+      id="body"
+      placeholder='Tell us more about it ....'
+     ref={postBody}
     />
+   
   </div>
-  <div className="mb-3 form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-    <label className="form-check-label" htmlFor="exampleCheck1">
-      Check me out
+ 
+   
+  <div className="mb-3 flex-grow-1 p-4">
+    <label htmlFor="reaction" className="form-label">
+      Number Of reaction
     </label>
+    <input
+      type="type"
+      className="form-control"
+      id="reactions"
+      placeholder='How many people reacted to this post'
+     ref={reactions}
+    />
+   
   </div>
+
+
+  <div className="mb-3 flex-grow-1 p-4">
+    <label htmlFor="tags" className="form-label">
+      Enter Your Hashtags here
+    </label>
+    <input
+      type="type"
+      className="form-control"
+      id="tags"
+      placeholder='Please Enter tags Using Space'
+     ref={tags}
+    />
+   
+  </div>
+
+
   <button type="submit" className="btn btn-primary">
-    Submit
+    Post
   </button>
 </form>
 
