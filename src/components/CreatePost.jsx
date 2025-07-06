@@ -1,17 +1,32 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
+import { PostList } from '../store/PostlistStore';
 
 const CreatePost = () => {
+  // const{addPost}= useContext(PostList)
+  const { addPost } = useContext(PostList); 
+  const userIdElement = useRef();
+  const postTitleElement = useRef();
+  const postBodyElement = useRef();
+  const reactionsElement = useRef();
+  const tagsElement = useRef();
 
-  const userId = useRef();
-  const postTitle = useRef();
-  const postBody = useRef();
-  const reactions = useRef();
-  const tags = useRef();
 
+  const handleSubmit =(event)=>{
+    event.preventDefault() ;
+    const userId=userIdElement.current.value ;
+    const postTitle= postTitleElement.current.value ;
+    const postBody= postBodyElement.current.value ;
+    const reactions=reactionsElement.current.value; 
+    const tags=tagsElement.current.value.trim().split(/\s+/);
+    
+    console.log("Calling addPost:", { userId, postTitle }); 
+    addPost(userId,postTitle,postBody,reactions,tags)
+
+  }
 
   return (
     <>
-    <form className='create-post'>
+    <form className='create-post' onSubmit={handleSubmit}>
 
     <div className="mb-3 flex-grow-1 p-4">
     <label htmlFor="userId" className="form-label">
@@ -22,7 +37,7 @@ const CreatePost = () => {
       className="form-control"
       id="userId"
       placeholder='Your user id'
-     ref={userId}
+     ref={userIdElement}
     />
    
   </div>  
@@ -37,7 +52,7 @@ const CreatePost = () => {
       className="form-control"
       id="title"
       placeholder='How are you felling today ....'
-     ref={postTitle}
+     ref={postTitleElement}
     />
    
   </div>
@@ -52,7 +67,7 @@ const CreatePost = () => {
       className="form-control"
       id="body"
       placeholder='Tell us more about it ....'
-     ref={postBody}
+     ref={postBodyElement}
     />
    
   </div>
@@ -67,7 +82,7 @@ const CreatePost = () => {
       className="form-control"
       id="reactions"
       placeholder='How many people reacted to this post'
-     ref={reactions}
+     ref={reactionsElement}
     />
    
   </div>
@@ -82,7 +97,7 @@ const CreatePost = () => {
       className="form-control"
       id="tags"
       placeholder='Please Enter tags Using Space'
-     ref={tags}
+     ref={tagsElement }
     />
    
   </div>

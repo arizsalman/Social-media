@@ -27,7 +27,13 @@ const SideBar = ( {selectedTab,setSelectedTab}) => {
       console.log("Clicked");
       setSelectedTab ("Home")}} >
       {" "}
-      <a href="#" className={`nav-link ${selectedTab=== "Home" && "active"}`} aria-current="page">
+      {/* <a href="#" className={`nav-link ${selectedTab=== "Home" && "active"}`} aria-current="page">  WRONG */}
+      {/* <a href="#" className={`nav-link ${selectedTab === 'Home' && <h1>🏠 Home Content</h1>}
+}`} aria-current="page"> */}
+
+
+           <a href="#" className={`nav-link ${selectedTab === "Home" ? "active" : ""}`} aria-current="page">
+
         {" "}
         <svg
           className="bi pe-none me-2"
@@ -44,8 +50,12 @@ const SideBar = ( {selectedTab,setSelectedTab}) => {
       console.log("Clicked");
       setSelectedTab ("CreatePost")}}>
       {" "}
-      <a href="#" className={`nav-link ${selectedTab=== "CreatePost" && "active"}`} >
+      {/* <a href="#" className={`nav-link ${selectedTab=== "CreatePost" && "active"}`} > WRONG */}
+      {/* <a href="#" className={`nav-link ${selectedTab === 'Home' && <h1>🏠 Home Content</h1>}
+       }`} > */}
         
+        <a href="#" className={`nav-link ${selectedTab === "CreatePost" ? "active" : ""}`}>
+
         {" "}
         <svg
           className="bi pe-none me-2"
