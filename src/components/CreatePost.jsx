@@ -2,7 +2,7 @@ import React, { useContext, useRef } from 'react'
 import { PostList } from '../store/PostlistStore';
 
 const CreatePost = () => {
-  // const{addPost}= useContext(PostList)
+
   const { addPost } = useContext(PostList); 
   const userIdElement = useRef();
   const postTitleElement = useRef();

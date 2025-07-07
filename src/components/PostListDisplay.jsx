@@ -1,45 +1,22 @@
-// import React, { useContext } from 'react'
-// import Post from './Post'
-// import { PostList as PostListData } from '../store/PostlistStore'
-
-// const Postlist = () => {
-//   const {postList}= useContext(PostListData)
-//   return (
-//     <>
-//     {postList.map((post)=>(
-//       <Post key={post.id} post={post}/>
-//     ))}
-      
-//     </>
-//   )
-// }
-
-// export default Postlist
-
-
-
 import React, { useContext } from 'react';
 import { PostList } from '../store/PostlistStore';
 
+
 const PostListDisplay = () => {
-  const { postList } = useContext(PostList);
+  const { postList, deletePost } = useContext(PostList);
 
   return (
     <div>
       <h2>All Posts</h2>
-      {postList.length === 0 ? (
-        <p>No posts yet</p>
-      ) : (
-        postList.map((post) => (
-          <div key={post.id} className="card m-2 p-2">
-            <h5>{post.title}</h5>
-            <p>{post.body}</p>
-            <small>Reactions: {post.reaction}</small>
-            <br />
-            <small>Tags: {post.tags.join(', ')}</small>
-          </div>
-        ))
-      )}
+      {postList.map(post => (
+        <div key={post.id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
+          <h3>{post.title}</h3>
+          <p>{post.body}</p>
+          <p><strong>Reactions:</strong> {post.reaction}</p>
+          <p><strong>Tags:</strong> {post.tags.join(", ")}</p>
+          <button onClick={() => deletePost(post.id)}>Delete</button>
+        </div>
+      ))}
     </div>
   );
 };
