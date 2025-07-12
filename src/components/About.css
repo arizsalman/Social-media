@@ -1,0 +1,51 @@
+.about-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 40px 24px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15);
+  text-align: center;
+}
+.about-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+}
+.about-desc {
+  color: #2d3748;
+  font-size: 1.15rem;
+  margin-bottom: 32px;
+}
+.about-team {
+  background: #f7f8fa;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+  padding: 24px 20px;
+  margin-bottom: 32px;
+}
+.about-team h2 {
+  color: #667eea;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.about-team ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.about-team li {
+  color: #2d3748;
+  font-size: 1.05rem;
+  margin: 10px 0;
+}
+.about-footer {
+  color: #764ba2;
+  font-weight: 600;
+  font-size: 1.1rem;
+} 

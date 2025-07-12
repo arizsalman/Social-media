@@ -1,0 +1,98 @@
+.pricing-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 40px 24px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15);
+  text-align: center;
+}
+.pricing-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 32px;
+}
+.pricing-cards {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.pricing-card {
+  background: #f7f8fa;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.08);
+  padding: 32px 24px;
+  min-width: 250px;
+  max-width: 300px;
+  flex: 1 1 250px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+  position: relative;
+}
+.pricing-card.popular {
+  border: 2px solid #764ba2;
+  background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+}
+.pricing-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.18);
+}
+.pricing-card h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #667eea;
+}
+.price {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #764ba2;
+  margin-bottom: 18px;
+}
+.price span {
+  font-size: 1rem;
+  color: #888;
+  font-weight: 400;
+}
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+}
+.pricing-card ul li {
+  font-size: 1.05rem;
+  color: #2d3748;
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+.pricing-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.15);
+}
+.pricing-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.22);
+}
+@media (max-width: 900px) {
+  .pricing-cards {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+} 

@@ -1,7 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import'bootstrap/dist/css/bootstrap.min.css'
+import { Link } from 'react-router-dom';
+import LoginModal from './LoginModal';
 
 const Header = () => {
+  // Persistent authentication state
+  const [user, setUser] = useState(null);
+  const [showLogin, setShowLogin] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('demoUser');
+    if (stored) setUser(JSON.parse(stored));
+  }, []);
+
+  const handleLogin = (userObj) => {
+    setUser(userObj);
+    localStorage.setItem('demoUser', JSON.stringify(userObj));
+  };
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('demoUser');
+  };
+
   return (
     <>
       <header className="p-3 text-bg-dark">
@@ -10,8 +30,8 @@ const Header = () => {
     {" "}
     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       {" "}
-      <a
-        href="/"
+      <Link
+        to="/"
         className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
       >
         {" "}
@@ -24,33 +44,33 @@ const Header = () => {
         >
           <use xlinkHref="#bootstrap" />
         </svg>{" "}
-      </a>{" "}
+      </Link>{" "}
       <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         {" "}
         <li>
-          <a href="#" className="nav-link px-2 text-secondary">
+          <Link to="/" className="nav-link px-2 text-secondary">
             Home
-          </a>
+          </Link>
         </li>{" "}
         <li>
-          <a href="#" className="nav-link px-2 text-white">
+          <Link to="/features" className="nav-link px-2 text-white">
             Features
-          </a>
+          </Link>
         </li>{" "}
         <li>
-          <a href="#" className="nav-link px-2 text-white">
+          <Link to="/pricing" className="nav-link px-2 text-white">
             Pricing
-          </a>
+          </Link>
         </li>{" "}
         <li>
-          <a href="#" className="nav-link px-2 text-white">
+          <Link to="/faqs" className="nav-link px-2 text-white">
             FAQs
-          </a>
+          </Link>
         </li>{" "}
         <li>
-          <a href="#" className="nav-link px-2 text-white">
+          <Link to="/about" className="nav-link px-2 text-white">
             About
-          </a>
+          </Link>
         </li>{" "}
       </ul>{" "}
       <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -63,19 +83,29 @@ const Header = () => {
         />{" "}
       </form>{" "}
       <div className="text-end">
-        {" "}
-        <button type="button" className="btn btn-outline-light me-2">
-          Login
-        </button>{" "}
-        <button type="button" className="btn btn-warning">
-          Sign-up
-        </button>{" "}
+        {user ? (
+          <>
+            <span className="me-3 text-info fw-bold">👤 {user.username}</span>
+            <button type="button" className="btn btn-danger" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <button type="button" className="btn btn-outline-light me-2" onClick={() => setShowLogin(true)}>
+              Login
+            </button>
+            <button type="button" className="btn btn-warning" onClick={() => setShowLogin(true)}>
+              Sign-up
+            </button>
+          </>
+        )}
       </div>{" "}
     </div>{" "}
   </div>{" "}
 </header>
 
-
+      <LoginModal show={showLogin} onClose={() => setShowLogin(false)} onLogin={handleLogin} />
     </>
   )
 }

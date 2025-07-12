@@ -1,0 +1,116 @@
+.sidebar-ui {
+  width: 220px;
+  min-height: 60vh;
+  background: #23272f;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 24px 0 16px 0;
+  margin: 24px 0 24px 24px;
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 24px 18px 24px;
+  border-bottom: 1px solid #2d313a;
+  margin-bottom: 18px;
+}
+.sidebar-logo-icon {
+  color: #667eea;
+}
+.sidebar-title {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px;
+  margin-bottom: auto;
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: 8px;
+  transition: background 0.18s, color 0.18s;
+}
+.sidebar-link:hover {
+  background: #31343c;
+  color: #fff;
+}
+.sidebar-link.active {
+  background: #667eea;
+  color: #fff;
+}
+.sidebar-link-icon {
+  font-size: 1.15rem;
+}
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #23272f;
+  border-radius: 10px;
+  margin: 24px 16px 0 16px;
+  padding: 10px 12px;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.04);
+}
+.sidebar-profile-img {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border: 2px solid #31343c;
+}
+.sidebar-profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sidebar-profile-name {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.sidebar-profile-role {
+  color: #a0aec0;
+  font-size: 0.85rem;
+}
+@media (max-width: 900px) {
+  .sidebar-ui {
+    width: 100vw;
+    min-width: 0;
+    margin: 0 0 18px 0;
+    border-radius: 0 0 16px 16px;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+  .sidebar-logo, .sidebar-profile {
+    display: none;
+  }
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 4px;
+    padding: 0 8px;
+    margin-bottom: 0;
+    width: 100vw;
+    justify-content: center;
+  }
+  .sidebar-link {
+    font-size: 0.98rem;
+    padding: 8px 10px;
+    border-radius: 6px;
+  }
+} 
