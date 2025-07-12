@@ -53,6 +53,11 @@ const Header = () => {
           </Link>
         </li>{" "}
         <li>
+          <Link to="/goals" className="nav-link px-2 text-white">
+            Goals
+          </Link>
+        </li>{" "}
+        <li>
           <Link to="/features" className="nav-link px-2 text-white">
             Features
           </Link>

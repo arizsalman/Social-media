@@ -1,0 +1,731 @@
+body, .toggl-calendar-root {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.toggl-hero {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #4ecdc4 100%);
+  color: #fff;
+  padding: 48px 0 32px 0;
+  text-align: center;
+  border-radius: 0 0 32px 32px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.10);
+  margin-bottom: 32px;
+  animation: fadeInDown 0.7s;
+}
+.toggl-hero-title {
+  font-size: 2.7rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+.toggl-hero-desc {
+  font-size: 1.25rem;
+  font-weight: 400;
+  opacity: 0.95;
+  margin-bottom: 0;
+}
+
+.toggl-topbar {
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.toggl-topbar-left {
+  flex: 1;
+  font-weight: 600;
+  color: #fff;
+}
+.toggl-input {
+  background: #f7f8fa;
+  border: 1.5px solid #ececec;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1.1rem;
+  color: #232323;
+  width: 320px;
+  outline: none;
+  transition: border 0.2s;
+}
+.toggl-input::placeholder {
+  color: #888 !important;
+}
+.toggl-topbar-left .toggl-input:focus {
+  border-color: #667eea;
+}
+.toggl-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.toggl-timer-display {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #232323;
+  background: #f7f8fa;
+  border-radius: 8px;
+  padding: 6px 14px;
+  margin-right: 6px;
+}
+.toggl-play-btn {
+  background: linear-gradient(135deg, #667eea, #4ecdc4);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.13);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.toggl-play-btn:hover {
+  background: linear-gradient(135deg, #4ecdc4, #667eea);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.18);
+}
+.toggl-play-btn-running {
+  background: linear-gradient(135deg, #ff6b6b, #feca57);
+}
+
+/* Weekbar */
+.toggl-weekbar {
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.toggl-weekbar-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.toggl-arrow-btn {
+  background: #232323;
+  color: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.toggl-arrow-btn:hover {
+  background: #333;
+}
+.toggl-week-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #232323;
+  background: #f7f8fa;
+  border-radius: 8px;
+  padding: 6px 14px;
+}
+.toggl-week-total {
+  font-size: 1rem;
+  color: #667eea;
+  font-weight: 600;
+  margin-left: 18px;
+}
+.toggl-week-total span {
+  color: #fff;
+  font-weight: 600;
+  margin-left: 0.3rem;
+}
+.toggl-weekbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.toggl-view-switcher {
+  display: flex;
+  gap: 0.5rem;
+}
+.toggl-view-switcher .toggl-view-btn {
+  background: #ececec;
+  color: #232323;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-right: 6px;
+  padding: 7px 18px;
+  transition: background 0.2s, color 0.2s;
+}
+.toggl-view-btn-active {
+  background: #667eea !important;
+  color: #fff !important;
+}
+.toggl-view-btn:active {
+  background: #181818;
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+.toggl-icon {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  background: #444;
+  border-radius: 3px;
+  font-size: 1.3rem;
+  color: #667eea;
+  margin-right: 6px;
+}
+.toggl-icon-folder { background: #444; }
+.toggl-icon-note { background: #444; }
+.toggl-icon-billable { background: #444; }
+.toggl-icon-play { background: #fff; mask: url('data:image/svg+xml;utf8,<svg fill="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>') center/contain no-repeat; }
+.toggl-icon-settings { background: #444; }
+.toggl-icon-layout { background: #444; }
+
+.toggl-main-content {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  background: transparent;
+  min-height: 80vh;
+  justify-content: center;
+}
+
+.toggl-calendar-grid {
+  flex: 1;
+  background: rgba(255,255,255,0.85);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.10);
+  margin: 0 0 32px 0;
+  padding: 0 0 32px 0;
+  overflow-x: auto;
+  animation: fadeInUp 0.7s;
+}
+
+.toggl-calendar-header-row {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.7);
+  border-radius: 24px 24px 0 0;
+  border-bottom: 2px solid #ececec;
+  font-weight: 700;
+  color: #232323;
+}
+.toggl-calendar-header-cell {
+  flex: 1;
+  text-align: center;
+  padding: 22px 0 12px 0;
+  font-size: 1.15rem;
+  color: #232323;
+}
+.toggl-calendar-header-today {
+  background: #e0e7ff;
+  color: #667eea;
+  border-radius: 0 0 16px 16px;
+}
+.toggl-calendar-header-empty {
+  background: #181818;
+  border: none;
+}
+.toggl-calendar-header-day {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.toggl-calendar-header-date {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #667eea;
+}
+.toggl-calendar-header-total {
+  font-size: 1rem;
+  color: #4ecdc4;
+  font-weight: 700;
+}
+.toggl-calendar-body {
+  display: flex;
+  flex-direction: column;
+}
+.toggl-calendar-row {
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.toggl-calendar-time-cell {
+  width: 90px;
+  text-align: right;
+  padding-right: 16px;
+  color: #888;
+  font-size: 1.05rem;
+}
+.toggl-calendar-cell {
+  flex: 1;
+  min-height: 38px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 10px;
+  margin: 3px 3px;
+  border: 1.5px solid #ececec;
+  transition: background 0.18s, border 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.04);
+}
+.toggl-calendar-row:last-child {
+  border-bottom: 1px solid #444;
+}
+.toggl-calendar-cell:last-child {
+  border-right: 1px solid #444;
+}
+
+/* Sidebar */
+.toggl-sidebar {
+  background: rgba(255,255,255,0.85);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.10);
+  padding: 32px 22px;
+  margin: 32px 0 32px 32px;
+  min-width: 240px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-self: flex-start;
+  animation: fadeInRight 0.7s;
+}
+.toggl-sidebar-section {
+  margin-bottom: 0;
+}
+.toggl-sidebar-header {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #2d3748;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.toggl-sidebar-plus {
+  background: linear-gradient(135deg, #4ecdc4, #667eea);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(78, 205, 196, 0.13);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.toggl-sidebar-plus:hover {
+  background: linear-gradient(135deg, #667eea, #4ecdc4);
+  color: #fff;
+}
+.toggl-sidebar-content ul li {
+  color: #444;
+  font-size: 1.08rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(102, 126, 234, 0.07);
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: background 0.18s;
+}
+.toggl-sidebar-content ul li:hover {
+  background: #e0e7ff;
+}
+
+@media (max-width: 1100px) {
+  .toggl-sidebar {
+    display: none;
+  }
+  .toggl-calendar-grid {
+    margin-left: 0;
+  }
+}
+@media (max-width: 700px) {
+  .toggl-hero {
+    padding: 32px 0 18px 0;
+    border-radius: 0 0 18px 18px;
+  }
+  .toggl-hero-title {
+    font-size: 1.5rem;
+  }
+  .toggl-main-content {
+    flex-direction: column;
+    gap: 0;
+  }
+  .toggl-calendar-grid {
+    margin: 0;
+    border-radius: 12px;
+    padding: 0 0 12px 0;
+  }
+}
+
+.toggl-calendar-event-block {
+  background: #232323 !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  border: none !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  padding: 10px 14px !important;
+  margin: 2px 0 !important;
+  min-height: 20px;
+  width: 100%;
+  box-shadow: none !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  gap: 0;
+  overflow: hidden;
+}
+.toggl-calendar-event-block span {
+  display: block;
+  width: 100%;
+  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.toggl-calendar-event-block .event-label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: #fff;
+}
+.toggl-calendar-event-block .event-duration {
+  font-size: 14px;
+  font-weight: 400;
+  color: #e0e0e0;
+  margin-top: 4px;
+}
+.toggl-calendar-event-block:hover {
+  background: #232323 !important;
+  filter: none !important;
+  box-shadow: none !important;
+} 
+
+.toggl-add-event-form {
+  background: #232323;
+  border: 1.5px solid #4ecdc4;
+  border-radius: 6px;
+  padding: 8px 10px 8px 10px;
+  position: absolute;
+  z-index: 10;
+  top: 2px;
+  left: 2px;
+  min-width: 140px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.toggl-add-event-input {
+  background: #181818;
+  color: #f5f5f5;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+.toggl-add-event-color {
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #232323;
+  color: #f5f5f5;
+  font-size: 13px;
+  padding: 2px 6px;
+}
+.toggl-add-event-btn {
+  background: linear-gradient(135deg, #667eea, #4ecdc4) !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.08rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.13);
+  padding: 12px 28px;
+}
+.toggl-add-event-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.18);
+}
+.toggl-add-event-cancel {
+  background: #fff !important;
+  color: #ff6b6b !important;
+  border: 2px solid #ff6b6b !important;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.08rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  padding: 12px 28px;
+}
+.toggl-add-event-cancel:hover {
+  background: #ff6b6b !important;
+  color: #fff !important;
+} 
+
+.toggl-calendar-cell-highlight {
+  background: #e0e7ff;
+  border: 2px solid #667eea;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.10);
+} 
+
+.toggl-add-event-popup {
+  background: #232323;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.32);
+  padding: 24px 28px 20px 28px;
+  min-width: 320px;
+  min-height: 180px;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #fff;
+  border: 1.5px solid #333;
+}
+.toggl-add-event-label-row {
+  margin-bottom: 0px;
+  text-align: left;
+}
+.toggl-add-event-label-input {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  background: transparent !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 0 4px 0 !important;
+}
+.toggl-add-event-icon-row {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  margin-bottom: 6px;
+  margin-top: 2px;
+  align-items: center;
+}
+.toggl-add-event-icon {
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.toggl-add-event-icon:hover {
+  background: #292929;
+}
+.toggl-add-event-dropdown {
+  background: #232323;
+  border: 1.5px solid #444;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  position: absolute;
+  margin-top: 8px;
+  left: 0;
+  min-width: 140px;
+  z-index: 30;
+  color: #fff;
+  font-size: 15px;
+}
+.toggl-add-event-dropdown-item {
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.toggl-add-event-dropdown-item:hover {
+  background: #292929;
+}
+.toggl-add-event-note-input {
+  margin-top: 6px;
+  margin-bottom: 2px;
+}
+.toggl-add-event-billable-input {
+  margin-top: 6px;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+}
+.toggl-add-event-time-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 0 0;
+}
+.toggl-add-event-time-picker {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.toggl-add-event-arrow {
+  font-size: 20px;
+  color: #aaa;
+  margin: 0 8px;
+}
+.toggl-add-event-duration {
+  font-size: 16px;
+  color: #feca57;
+  font-weight: 600;
+  margin-left: 10px;
+}
+.toggl-add-event-btn-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.toggl-add-event-btn-large {
+  background: linear-gradient(135deg, #667eea, #4ecdc4) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  padding: 8px 32px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: background 0.18s;
+}
+.toggl-add-event-btn-large:hover {
+  background: #e0e0e0 !important;
+} 
+
+.toggl-event-block {
+  background: rgba(102, 126, 234, 0.85);
+  color: #fff;
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.13);
+  border: none;
+  z-index: 1;
+  cursor: pointer;
+  gap: 0;
+  overflow: hidden;
+  transition: box-shadow 0.2s, background 0.2s;
+  animation: fadeInUp 0.5s;
+}
+.toggl-event-block:hover {
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.18);
+  background: linear-gradient(135deg, #667eea, #4ecdc4);
+}
+.event-label {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #fff;
+}
+.event-duration {
+  font-size: 1rem;
+  color: #feca57;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.toggl-add-event-btn, .toggl-add-event-btn-large {
+  background: linear-gradient(135deg, #667eea, #4ecdc4) !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.08rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.13);
+  padding: 12px 28px;
+}
+.toggl-add-event-btn:hover, .toggl-add-event-btn-large:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.18);
+}
+.toggl-add-event-cancel {
+  background: #fff !important;
+  color: #ff6b6b !important;
+  border: 2px solid #ff6b6b !important;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.08rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  padding: 12px 28px;
+}
+.toggl-add-event-cancel:hover {
+  background: #ff6b6b !important;
+  color: #fff !important;
+}
+.fab-add-goal {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: linear-gradient(135deg, #667eea, #4ecdc4);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  font-size: 2.2rem;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  animation: fadeInUp 0.7s;
+}
+.fab-add-goal:hover {
+  background: linear-gradient(135deg, #4ecdc4, #667eea);
+  transform: scale(1.08);
+  box-shadow: 0 16px 48px rgba(102, 126, 234, 0.22);
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Remove unwanted scrollbars from PrimeReact dialogs */
+.p-dialog-content {
+  overflow: visible !important;
+  max-height: none !important;
+  padding-bottom: 0 !important;
+}
+.p-dialog {
+  overflow: visible !important;
+  max-height: none !important;
+} 
