@@ -11,6 +11,7 @@ import RightSidebar from './components/RightSidebar';
 import TogglCalendarView from './components/TogglCalendarView';
 import PostListProvider from './store/PostlistStore';
 import './App.css';
+import FirebaseAuth from './components/FirebaseAuth';
 
 function MainLayout() {
   const location = useLocation();
@@ -28,6 +29,8 @@ function MainLayout() {
             <Route path="/faqs" element={<FAQs />} />
             <Route path="/about" element={<About />} />
             <Route path="/goals" element={<TogglCalendarView />} />
+            <Route path="/login" element={<FirebaseAuth />} />
+            <Route path="/signup" element={<FirebaseAuth />} />
           </Routes>
         </div>
         {!isGoalsPage && <RightSidebar />}
