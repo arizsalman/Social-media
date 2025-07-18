@@ -1,14 +1,30 @@
-import React, { useContext, useState } from 'react';
-import { PostList } from '../store/PostlistStore';
-import CreatePost from './CreatePost';
-import './PostListDisplay.css';
+import React, { useContext, useState } from "react";
+import { PostList } from "../store/PostlistStore";
+import CreatePost from "./CreatePost";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  Grid,
+  IconButton,
+  Box,
+  Container,
+  Stack,
+  Chip,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
 
 const PostListDisplay = () => {
   const { postList, deletePost } = useContext(PostList);
   const [showCreateModal, setShowCreateModal] = useState(false);
 
   const handleDelete = (postId) => {
-    if (window.confirm('Are you sure you want to delete this post?')) {
+    if (window.confirm("Are you sure you want to delete this post?")) {
       deletePost(postId);
     }
   };
@@ -22,101 +38,94 @@ const PostListDisplay = () => {
   };
 
   return (
-    <div className="post-list-container">
-      <div className="post-list-header">
-        <div className="header-left">
-          <h2 className="post-list-title">📱 All Posts</h2>
-          <div className="post-count">
-            {postList.length} {postList.length === 1 ? 'post' : 'posts'}
-          </div>
-        </div>
-        <button 
-          className="create-post-btn"
+    <Container maxWidth="md" sx={{ mt: 4 }}>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        mb={3}
+      >
+        <Typography variant="h4" fontWeight={700}>
+          📱 All Posts
+        </Typography>
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
           onClick={handleCreatePost}
+          sx={{ borderRadius: 3, fontWeight: 600 }}
         >
-          ✨ Create Post
-        </button>
-      </div>
-      
-      {postList.length === 0 ? (
-        <div className="empty-state">
-          <div className="empty-icon">📝</div>
-          <h3>No posts yet</h3>
-          <p>Create your first post to get started!</p>
-          <button 
-            className="create-first-post-btn"
-            onClick={handleCreatePost}
-          >
-            Create Your First Post
-          </button>
-        </div>
-      ) : (
-        <div className="posts-grid">
-          {postList.map(post => (
-            <div key={post.id} className="post-card">
-              <div className="post-header">
-                <div className="post-user-info">
-                  <div className="user-avatar">
-                    {post.user_id.charAt(0).toUpperCase()}
-                  </div>
-                  <div className="user-details">
-                    <span className="username">{post.user_id}</span>
-                    <span className="post-date">Just now</span>
-                  </div>
-                </div>
-                <button 
-                  className="delete-btn"
-                  onClick={() => handleDelete(post.id)}
-                  title="Delete post"
-                >
-                  🗑️
-                </button>
-              </div>
-              
-              <div className="post-content">
-                <h3 className="post-title">{post.title}</h3>
-                <p className="post-body">{post.body}</p>
-              </div>
-              
-              <div className="post-footer">
-                <div className="post-reactions">
-                  <span className="reaction-icon">❤️</span>
-                  <span className="reaction-count">{post.reaction}</span>
-                </div>
-                
-                <div className="post-tags">
-                  {post.tags.map((tag, index) => (
-                    <span key={index} className="tag">
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+          Create Post
+        </Button>
+      </Stack>
+
+      {showCreateModal && (
+        <Box mb={4}>
+          <CreatePost onPostCreated={handleCloseModal} />
+        </Box>
       )}
 
-      {/* Create Post Modal */}
-      {showCreateModal && (
-        <div className="modal-overlay" onClick={handleCloseModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>✨ Create New Post</h3>
-              <button 
-                className="modal-close-btn"
-                onClick={handleCloseModal}
-              >
-                ✕
-              </button>
-            </div>
-            <div className="modal-body">
-              <CreatePost onPostCreated={handleCloseModal} />
-            </div>
-          </div>
-        </div>
+      {postList.length === 0 ? (
+        <Box textAlign="center" mt={8}>
+          <Typography variant="h5" color="text.secondary" gutterBottom>
+            📝 No posts yet
+          </Typography>
+          <Typography variant="body1" color="text.secondary" mb={2}>
+            Create your first post to get started!
+          </Typography>
+          <Button
+            variant="outlined"
+            startIcon={<AddIcon />}
+            onClick={handleCreatePost}
+            sx={{ borderRadius: 3 }}
+          >
+            Create Your First Post
+          </Button>
+        </Box>
+      ) : (
+        <Grid container spacing={3}>
+          {postList.map((post) => (
+            <Grid item xs={12} sm={6} md={4} key={post.id}>
+              <Card sx={{ borderRadius: 4, boxShadow: 3, minHeight: 220 }}>
+                <CardContent>
+                  <Typography variant="h6" fontWeight={700} gutterBottom>
+                    {post.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    {post.body}
+                  </Typography>
+                  <Stack direction="row" spacing={1} mt={2} mb={1}>
+                    {post.tags &&
+                      post.tags.map((tag, idx) => (
+                        <Chip
+                          key={idx}
+                          label={`#${tag}`}
+                          size="small"
+                          color="primary"
+                        />
+                      ))}
+                  </Stack>
+                  <Typography variant="caption" color="text.secondary">
+                    👤 {post.user_id} &nbsp; | &nbsp; ❤️ {post.reaction}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <IconButton
+                    color="error"
+                    onClick={() => handleDelete(post.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       )}
-    </div>
+    </Container>
   );
 };
 
